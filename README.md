@@ -23,7 +23,7 @@ Requires [ast-grep](https://ast-grep.github.io/guide/quick-start.html) (tested w
 For Claude Code:
 
 ```bash
-git clone https://github.com/OWNER/REPO.git ~/.claude/skills/write-codemod
+git clone https://github.com/nicoespeon/write-codemod.git ~/.claude/skills/write-codemod
 ```
 
 Then ask your agent something like:
