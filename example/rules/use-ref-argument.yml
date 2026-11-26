@@ -1,0 +1,13 @@
+id: use-ref-argument
+language: Tsx
+message: React 19 requires an argument for useRef
+severity: hint
+rule:
+  kind: arguments
+  regex: ^\(\s*\)$
+  inside:
+    kind: call_expression
+    has:
+      field: function
+      regex: ^(React\.)?useRef$
+fix: (undefined)

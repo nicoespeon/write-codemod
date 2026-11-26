@@ -1,0 +1,18 @@
+id: use-ref-argument
+valid:
+  - useRef(null)
+  - useRef<HTMLDivElement>(null)
+  - useRef(undefined)
+  - other.useRef()
+  - useRefCallback()
+  - useState()
+invalid:
+  - useRef()
+  - useRef<number>()
+  - React.useRef()
+  - React.useRef<HTMLInputElement>()
+  - useRef( )
+  - |
+    const ref = useRef<
+      HTMLDivElement
+    >();

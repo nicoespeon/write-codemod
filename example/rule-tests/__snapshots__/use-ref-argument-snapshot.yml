@@ -1,0 +1,101 @@
+id: use-ref-argument
+snapshots:
+  React.useRef():
+    fixed: React.useRef(undefined)
+    labels:
+    - source: ()
+      style: primary
+      start: 12
+      end: 14
+    - source: React.useRef
+      style: secondary
+      start: 0
+      end: 12
+    - source: React.useRef()
+      style: secondary
+      start: 0
+      end: 14
+  React.useRef<HTMLInputElement>():
+    fixed: React.useRef<HTMLInputElement>(undefined)
+    labels:
+    - source: ()
+      style: primary
+      start: 30
+      end: 32
+    - source: React.useRef
+      style: secondary
+      start: 0
+      end: 12
+    - source: React.useRef<HTMLInputElement>()
+      style: secondary
+      start: 0
+      end: 32
+  ? |
+    const ref = useRef<
+      HTMLDivElement
+    >();
+  : fixed: |
+      const ref = useRef<
+        HTMLDivElement
+      >(undefined);
+    labels:
+    - source: ()
+      style: primary
+      start: 38
+      end: 40
+    - source: useRef
+      style: secondary
+      start: 12
+      end: 18
+    - source: |-
+        useRef<
+          HTMLDivElement
+        >()
+      style: secondary
+      start: 12
+      end: 40
+  useRef( ):
+    fixed: useRef(undefined)
+    labels:
+    - source: ( )
+      style: primary
+      start: 6
+      end: 9
+    - source: useRef
+      style: secondary
+      start: 0
+      end: 6
+    - source: useRef( )
+      style: secondary
+      start: 0
+      end: 9
+  useRef():
+    fixed: useRef(undefined)
+    labels:
+    - source: ()
+      style: primary
+      start: 6
+      end: 8
+    - source: useRef
+      style: secondary
+      start: 0
+      end: 6
+    - source: useRef()
+      style: secondary
+      start: 0
+      end: 8
+  useRef<number>():
+    fixed: useRef<number>(undefined)
+    labels:
+    - source: ()
+      style: primary
+      start: 14
+      end: 16
+    - source: useRef
+      style: secondary
+      start: 0
+      end: 6
+    - source: useRef<number>()
+      style: secondary
+      start: 0
+      end: 16
