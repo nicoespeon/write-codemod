@@ -107,7 +107,8 @@ With the stub rule (`pattern: TODO_CODEMOD_STUB`), expect:
 
 - `[Missing]` on every `invalid` case. A `[Noisy]` at this stage means the test file is wrong.
 - `FAIL <case>` with a diff on every fixture.
-- `Cannot parse` or `Configuration not found`: the setup is broken, not the rule. Fix that first: ids must match, `sgconfig.yml` needs `ruleDirs` and `testConfigs`.
+- `Cannot parse`: the setup is broken, not the rule. Fix that first: `sgconfig.yml` needs `ruleDirs` and `testConfigs`.
+- `Configuration not found! <id>`: the test's `id` matches no rule. That test is **skipped and the run still reports `ok`**. Check that the number of tests run equals the number of test files.
 
 ## Every bug becomes a test
 

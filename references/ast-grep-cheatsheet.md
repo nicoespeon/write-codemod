@@ -66,6 +66,7 @@ fix: '"react"'
 7. **JSX has two shapes:** `<A />` is a `jsx_self_closing_element`; `<A>x</A>` is a `jsx_element` with a `jsx_opening_element`. Cover both with `any`.
 8. **Nested matches apply one level per run.** `a.strict().strict()` needs two `scan --update-all` runs. Run until nothing changes, or write the rule to match the innermost node.
 9. **`ast-grep test` doesn't check `fix` output** unless snapshots exist. Before snapshots, `check-fixtures.sh` is what verifies the output.
+10. **A test whose `id` matches no rule is skipped**, with only a `Configuration not found! <id>` line, and the run still exits 0.
 
 ## Limits: when to stop and switch
 
