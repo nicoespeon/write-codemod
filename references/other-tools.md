@@ -32,6 +32,8 @@ The classic JavaScript codemod runner, built on recast, which keeps the original
 
 ast-grep driven from TypeScript instead of YAML, from [Codemod](https://codemod.com). It adds semantic analysis (definitions and references), multi-file edits, workflows and a public registry. Tests are folders with `input` and `expected` files, run by `npx codemod jssg test`. [JSSG docs](https://docs.codemod.com/community/jssg), [testing](https://docs.codemod.com/community/jssg/testing).
 
+To **publish** the codemod to the Codemod registry, use their own [`sdk-migration` skill](https://github.com/codemod/codemod/blob/main/skills/sdk-migration/SKILL.md), which `npx codemod ai` installs along with an MCP server. It follows a similar plan → fixtures → green loop, built around their CLI and an account. Keep this skill's checkpoint: the human reviews the fixtures, not just the plan.
+
 ## Whatever the tool, keep the process
 
 The tool changes, the discipline doesn't: fixtures a human can read (`input` / `expected`), must-not-touch cases next to must-change ones, the human checkpoint before implementation, red before green, and every bug turned into a test.

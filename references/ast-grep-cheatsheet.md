@@ -36,38 +36,9 @@ fix: (undefined)
 
 ## Matching
 
-| Need | Use |
-| --- | --- |
-| Code that looks like code | `pattern: $OBJ.merge($ARG)` |
-| One node | `$NAME`. The same name twice must be the same code: `$A == $A` matches `x == x`, not `x == y` |
-| Zero or more nodes | `$$$ARGS` (e.g. `fn($$$ARGS)`) |
-| Any node, no binding | `$_` |
-| A node type | `kind: import_specifier` (names come from `--debug-query=ast`) |
-| Text of a node | `regex: ^useRef$` (Rust regex: no look-around, no backreferences) |
-| Ancestor / descendant | `inside:` / `has:` |
-| Siblings | `follows:` / `precedes:` |
-| A named child | `has: { field: function, regex: ... }` (fields: `function`, `object`, `key`, `value`, `source`, `name`…) |
-| Logic | `all:`, `any:`, `not:` |
-| Restrict a metavariable | `constraints: { ARG: { kind: string } }` |
-| Reuse a sub-rule | `utils:` + `matches:` |
+This file doesn't cover matching syntax: `pattern`, `kind`, `regex`, `inside`/`has`, `all`/`any`/`not`, metavariables, `constraints`, `utils`. Use the official [ast-grep skill](https://github.com/ast-grep/agent-skill) if it's installed, or the [rule reference](https://ast-grep.github.io/reference/rule.html).
 
-Examples:
-
-```yaml
-# Only Zod-like .merge(): skip Object/_ receivers and anything inside lodash calls
-rule:
-  pattern: $OBJ.merge($ARG)
-  not:
-    inside:
-      kind: call_expression
-      pattern: lodash.$_($$$)
-      stopBy: end
-constraints:
-  OBJ:
-    not:
-      regex: ^(Object|_)$
-fix: $OBJ.extend($ARG)
-```
+## Fixing
 
 ```yaml
 # Rewrite an import source, and only the import source
@@ -78,24 +49,6 @@ rule:
     kind: import_statement
 fix: '"react"'
 ```
-
-```yaml
-# A util scoped to imports from "react"
-utils:
-  is-react-import:
-    kind: import_statement
-    has:
-      field: source
-      regex: ^["']react["']$
-rule:
-  kind: import_specifier
-  regex: ^useRef$
-  inside:
-    matches: is-react-import
-    stopBy: end
-```
-
-## Fixing
 
 - `fix` is a **text template**, not an AST: metavariables get pasted in, and relative indentation is kept ([rewrite guide](https://ast-grep.github.io/guide/rewrite-code.html)). A metavariable that didn't bind becomes an empty string.
 - Replace the smallest node you can (`()` → `(undefined)` instead of the whole call). The diff stays smaller and the formatting stays intact.

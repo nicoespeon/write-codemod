@@ -44,13 +44,14 @@ Then ask your agent something like:
 
 - [Documentation](https://ast-grep.github.io) and [playground](https://ast-grep.github.io/playground.html): paste code, see the AST, try a rule.
 - [Testing rules](https://ast-grep.github.io/guide/test-rule.html) and the [rule reference](https://ast-grep.github.io/reference/rule.html)
-- [Using ast-grep with AI tools](https://ast-grep.github.io/advanced/prompting.html), with the official [ast-grep agent skill](https://github.com/ast-grep/agent-skill) for writing rules. It complements this one, which covers the codemod process.
+- [Using ast-grep with AI tools](https://ast-grep.github.io/advanced/prompting.html), with the official [ast-grep agent skill](https://github.com/ast-grep/agent-skill). It teaches rule syntax for searching code; this skill adds the rewriting and testing side.
 - [*Mastering ast-grep*](https://leanpub.com/ast-grep), the book by ast-grep's author, Herrington Darkholme
 
 **Codemod.com**
 
 - [What are codemods?](https://codemod.com/blog/what-are-codemods)
 - [Quickstart](https://docs.codemod.com/community/oss-quickstart): build, test and publish a codemod with your agent
+- Their [`sdk-migration` skill](https://github.com/codemod/codemod/blob/main/skills/sdk-migration/SKILL.md), installed by `npx codemod ai`: the better fit if you want to publish to the Codemod registry. It asks the human to approve the plan; this skill asks the human to approve the tests.
 - [JSSG](https://docs.codemod.com/community/jssg), ast-grep driven from TypeScript, and the post [Announcing JavaScript ast-grep](https://codemod.com/blog/jssg)
 - [Writing codemods like a pro](https://codemod.com/blog/writing-codemods-like-a-pro)
 

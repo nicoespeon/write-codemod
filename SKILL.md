@@ -9,7 +9,11 @@ Don't migrate the code yourself. Write the program that migrates it. A codemod i
 
 The tests are the contract. The human reviews them before you write any implementation. Once they pass, they work as a ratchet: every bug you find later becomes a new failing case before it gets fixed.
 
-Default tool: [ast-grep](https://ast-grep.github.io). Read [references/ast-grep-cheatsheet.md](references/ast-grep-cheatsheet.md) before writing a rule, and [references/test-format.md](references/test-format.md) before writing a test. [example/](example/) is a small project that runs and passes.
+Default tool: [ast-grep](https://ast-grep.github.io). Read [references/ast-grep-cheatsheet.md](references/ast-grep-cheatsheet.md) before writing a rule, and [references/test-format.md](references/test-format.md) before writing a test. For rule syntax, use the official [ast-grep skill](https://github.com/ast-grep/agent-skill) if it's installed, or the [rule reference](https://ast-grep.github.io/reference/rule.html). [example/](example/) is a small project that runs and passes.
+
+## 0. Look for an existing codemod first
+
+Running a codemod that already exists is cheaper than writing one. Check the library's migration guide and repository for an official codemod, and search the Codemod registry: `npx codemod search "<library> <from> <to>"`. If one covers part of the migration, preview its changes with a dry run, then apply it. Then write a codemod only for the transformations it misses.
 
 ## 1. Study the migration and list the transformations
 
